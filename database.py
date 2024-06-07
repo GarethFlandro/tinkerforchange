@@ -1,6 +1,6 @@
 import sqlite3
 
-database = sqlite3.connect('foodbank.db')
+database = sqlite3.connect('/home/mintyfresh/repos/FindYourFood/tinkerforchange/foodbank',check_same_thread=False)
 cursor = database.cursor()
 
 
@@ -15,7 +15,7 @@ def process_new_request(user_id, item_requested, quantity):
 
 def get_all_requests():
     try:
-        return cursor.execute("SELECT * FROM requests WHERE status != 'Fulfilled'").fetchall()
+        return cursor.execute("SELECT * FROM requests").fetchall()
     except Exception as e:
         print(f"Error: {e}")
         return []

@@ -9,7 +9,7 @@
 <body style="background-color: #D7F2F9;">
     <h1>Login</h1>
     
-   <form id="loginForm" action="index.html" method="GET">
+   <form id="loginForm" method="POST">
        <label for="email">Email:</label>
        <input type="text" id="email" name="email" required><br>
        <label for="name">Name:</label>
@@ -23,35 +23,8 @@
            <option value="distributor">Distributor</option>
            <option value="donator">Donator</option>
        </select><br>
-       <button type="submit">Login</button>
+       <input type="submit">Login</button>
    </form>
 </body>
 </html>
-   <script>
-       const loginForm = document.getElementById("loginForm");
-       loginForm.addEventListener("submit", (event) => {
-           event.preventDefault();
-           const email = document.getElementById("email").value;
-           const role = document.getElementById("role").value;
-           fetch('/process_login', {
-               method: 'POST',
-               headers: {
-                   'Content-Type': 'application/json'
-               },
-               body: JSON.stringify({ email: email, role: role })
-
-           })
-           .then(response => {
-               if (response.ok) {
-                if (response.redirected) {
-                    window.location.href = response.url;
-                }
-               } else {
-                   console.error('Error submitting email:', response.status);
-               }
-           })
-           .catch(error => {
-               console.error('Error submitting email:', error);
-           });
-       });
-   </script>
+   
