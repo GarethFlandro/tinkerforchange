@@ -27,20 +27,19 @@
            event.preventDefault();
            const email = document.getElementById("email").value;
            const role = document.getElementById("role").value;
-           fetch('/submit_email', {
+           fetch('/process_login', {
                method: 'POST',
                headers: {
                    'Content-Type': 'application/json'
                },
                body: JSON.stringify({ email: email, role: role })
+
            })
            .then(response => {
                if (response.ok) {
-                   if (role === 'donator') {
-                       window.location.href = "donator.html";
-                   } else if (role === 'distributor') {
-                       window.location.href = "distributor.html";
-                   }
+                if (response.redirected) {
+                    window.location.href = response.url;
+                }
                } else {
                    console.error('Error submitting email:', response.status);
                }
