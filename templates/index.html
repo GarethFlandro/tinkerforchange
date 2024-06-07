@@ -1,5 +1,5 @@
 <!-- FILEPATH: /Users/samuelmayle/tinkerforchange/templates/index.html -->
-
+<!-- 
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,3 +24,52 @@
     {% endfor %}
 </body>
 </html>
+ -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find my Food</title>
+</head>
+<body style="background-color: #D7F2F9;">
+    <h1>Find my Food</h1>
+    <h3>Distributor Input</h3>
+    <form action="/submit-request" method="POST">
+        <label for="foodType">Food Type:</label>
+        <input type="text" id="foodType" name="foodType" required><br>
+
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br>
+
+        <button type="submit">Submit Request</button>
+    </form>
+    <div id="pythonInfo"></div>
+</body>
+</html>
+    <script>
+        const form = document.querySelector('form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const foodType = document.getElementById('foodType').value;
+            const quantity = document.getElementById('quantity').value;
+            const email = document.getElementById('email').value;
+            const response = await fetch('/submit-request', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ foodType, quantity, email })
+            });
+            if (response.ok) {
+                document.getElementById('pythonInfo').textContent = 'Request submitted successfully!';
+                window.location.href = "index.html";
+            } else {
+                document.getElementById('pythonInfo').textContent = 'Error submitting request.';
+            }
+        });
+    </script>
