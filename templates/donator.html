@@ -6,14 +6,93 @@
     <title>Box Display</title>
     <style>
         .box {
+            display: flex;
+            flex-direction: column;
             width: 200px;
-            height: 200px;
+            height: 400px;
             border: 1px solid black;
             margin: 10px;
             padding: 10px;
+            border-radius: 10px;
+            background-color: #fffaf4;
         }
+        html {
+            height: 100%;
+            width: 100%;
+          }
+          body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #D7F2F9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+          }
+          
+          .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+          }
+          
+          h1 {
+            margin-bottom: 20px;
+            color: #333;
+            margin-right: 20px;
+          }
+          
+          input,
+          textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+          }
+          
+          textarea:hover {
+              border-color: #323334;
+          }
+          
+          button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 80px;
+            height: 40px;
+          }
+          
+          button:hover {
+            background-color: #0056b3;
+          }
+          
+          select {
+              padding: 5px;
+              border: 1px solid #ccc;
+              border-radius: 7px;
+          }
+          
+          select:hover {
+              background-color: #f4f4f4;
+          }
+          
+          .login {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-direction: column;
+          }
+          
     </style>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     {% for box in boxes %}
@@ -23,6 +102,7 @@
             <p>{{ box['quantity']}}</p>
             <p>{{ box['request_date'] }}</p>
             <p>{{ box['address'] }}</p>
+            <p>{{ box['name'] }}</p>
             <input type="number" value=1 name='amount' id='amount'>
             <input type=submit name=donate value="Donate"></button>
         </form>

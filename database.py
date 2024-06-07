@@ -19,10 +19,19 @@ def process_new_request(user_id, item_requested, quantity):
     except Exception as e:
         print(f"Error: {e}")
         return False
+def process_thing(a):
+    b = cursor.execute("SELECT address, full_name FROM users WHERE user_id = ?", (a['user_id'],)).fetchone()
+    a['address'] = b['address']
+    a['name'] = b['full_name']
+    return a
+
 
 def get_all_requests():
     try:
-        return cursor.execute("""SELECT * FROM requests WHERE status != "Fulfilled" """).fetchall()
+        dict_list = []
+        for dictin in cursor.execute("""SELECT * FROM requests WHERE status != "Fulfilled" """).fetchall():
+            dict_list.append(process_thing(dictin))
+        return dict_list
     except Exception as e:
         print(f"Error: {e}")
         return []
