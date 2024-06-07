@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-// Login page
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FMF Login</title>
 </head>
-<body style="background-color: #D7F2F9;">
+<body style="background-color: #D7F2F9;"">
+    <h1>Login</h1>
+    
    <form id="loginForm" action="index.html" method="GET">
        <label for="email">Email:</label>
-       <input type="text" id="email" name="email" required>
+       <input type="text" id="email" name="email" required><br>
+       
+       <label for="role">Role:</label>
+       <select id="role" name="role">
+           <option value="distributor">Distributor</option>
+           <option value="donator">Donator</option>
+       </select><br>
        <button type="submit">Login</button>
    </form>
 </body>
@@ -20,16 +26,21 @@
        loginForm.addEventListener("submit", (event) => {
            event.preventDefault();
            const email = document.getElementById("email").value;
+           const role = document.getElementById("role").value;
            fetch('/submit_email', {
                method: 'POST',
                headers: {
                    'Content-Type': 'application/json'
                },
-               body: JSON.stringify({ email: email })
+               body: JSON.stringify({ email: email, role: role })
            })
            .then(response => {
                if (response.ok) {
-                   window.location.href = "index.html";
+                   if (role === 'donator') {
+                       window.location.href = "donator.html";
+                   } else if (role === 'distributor') {
+                       window.location.href = "distributor.html";
+                   }
                } else {
                    console.error('Error submitting email:', response.status);
                }
