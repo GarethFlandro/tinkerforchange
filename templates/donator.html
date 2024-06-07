@@ -1,1 +1,24 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Box Display</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% for box in boxes %}
+        <div class="box">
+            <h3>{{ boxes[box]['item'] }}</h3>
+            <p>{{ boxes[box]['value']}}</p>
+            <span>{{ boxes[box]['request_date'] }}</span>
+        </div>
+    {% endfor %}
+</body>
+</html>
