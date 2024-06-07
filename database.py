@@ -40,6 +40,16 @@ def fulfill_request(request_id, amount):
     except Exception as e:
         print(f"Error: {e}")
 
+def create_user(email,name, address):
+    try:
+        cursor.execute('INSERT INTO users (email, full_name, address) VALUES (?, ?, ?)', (email, name, address))
+        database.commit()
+        return cursor.execute('SELECT user_id FROM users WHERE email = ? AND address = ?', (email,address)).fetchone()[0]
+    except Exception as e:
+        print(f"Error: {e}")
+        return False
+    
+
 def send_email(email, message):
     pass
 
@@ -56,7 +66,6 @@ def send_email(email, message):
 #     user_id INT AUTO_INCREMENT PRIMARY KEY,
 #     full_name VARCHAR(255) NOT NULL,
 #     email VARCHAR(255),
-#     phone VARCHAR(20),
 #     address TEXT,
 #     registration_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 # );

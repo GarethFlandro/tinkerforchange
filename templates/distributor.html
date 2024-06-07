@@ -23,7 +23,7 @@
     <div id="pythonInfo"></div>
 </body>
 </html>
-    <script>
+    {% comment %} <script>
         const form = document.querySelector('form');
         form.addEventListener('submit', async (event) => {
             event.preventDefault();
@@ -44,4 +44,4 @@
                 document.getElementById('pythonInfo').textContent = 'Error submitting request.';
             }
         });
-    </script>
+    </script> {% endcomment %}
