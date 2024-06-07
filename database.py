@@ -3,6 +3,7 @@ import sqlite3
 database = sqlite3.connect('foodbank.db')
 cursor = database.cursor()
 
+
 def process_new_request(user_id, item_requested, quantity):
     try:
         cursor.execute('INSERT INTO requests (user_id, item_requested, quantity) VALUES (?, ?, ?)', (user_id, item_requested, quantity))

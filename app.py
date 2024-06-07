@@ -1,11 +1,17 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
+from database import * 
 app = Flask(__name__)
-template_dict = {'1':{"item":'apples','value':2,'request_date':'2024'},'2':{"item":'potatoes','value':5,'request_date':'2024'}}
+template_dict = [{"request_id":1,"item":'apples','value':2,'request_date':'2024'},{"request_id":2,"item":'potatoes','value':5,'request_date':'2024'}]
+
 @app.route('/')
 def index():
     return render_template('index.html', boxes=template_dict)
-
-
+@app.route('/donate', methods=['POST'])
+def donate():
+    if request.method == 'POST':
+        request_id = request.form['request_id']
+        amount = request.form['amount']
+        fulfill_request(request_id, amount)
+    return 'Donation successful'
 if __name__ == '__main__':
     app.run()
