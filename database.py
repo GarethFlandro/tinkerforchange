@@ -19,3 +19,4 @@ def fufill_request(request_id, amount):
         cursor.execute(f'UPDATE requests WHERE request_id = {request_id} status = "Fufilled"')
     else: 
         cursor.execute(f'UPDATE requests set amount = {c_amount - amount}')
+        
