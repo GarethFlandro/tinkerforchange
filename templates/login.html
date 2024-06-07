@@ -5,11 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FMF Login</title>
 </head>
-<body>
+<body style="background-color: #D7F2F9;"">
    <form id="loginForm" action="index.html" method="GET">
-       <label for="username">Username:</label>
-       <input type="text" id="username" name="username" required>
+       <label for="email">Email:</label>
+       <input type="text" id="email" name="email" required>
        <button type="submit">Login</button>
    </form>
 </body>
 </html>
+   <script>
+       const loginForm = document.getElementById("loginForm");
+       loginForm.addEventListener("submit", (event) => {
+           event.preventDefault();
+           const email = document.getElementById("email").value;
+           fetch('/submit_email', {
+               method: 'POST',
+               headers: {
+                   'Content-Type': 'application/json'
+               },
+               body: JSON.stringify({ email: email })
+           })
+           .then(response => {
+               if (response.ok) {
+                   window.location.href = "index.html";
+               } else {
+                   console.error('Error submitting email:', response.status);
+               }
+           })
+           .catch(error => {
+               console.error('Error submitting email:', error);
+           });
+       });
+   </script>
