@@ -24,11 +24,11 @@ def index():
 def donate():
     print(get_all_requests())
     global current_user
-    if current_user:
-        if request.method == 'POST':
-            request_id = request.form['request_id']
-            amount = request.form['amount']
-            fulfill_request(request_id, amount)
+    if request.method == 'POST':
+        request_id = request.form['id']
+        amount = request.form['amount']
+        print(request_id, int(amount))
+        fulfill_request(request_id, amount)
     return render_template('donator.html', boxes=get_all_requests())
     
 @app.route('/process_login', methods=['POST'])
@@ -43,7 +43,7 @@ def process_login():
     else:
         return render_template('distributor.html')
 
-
+@app.route('/submit-request', methods=['POST'])
 @app.route('/distributor', methods=['GET','POST'])
 def distribute():
     global current_user

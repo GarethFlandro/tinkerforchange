@@ -18,7 +18,7 @@
 <body>
     {% for box in boxes %}
         <form method=post action=/donate class="box">
-            <input type="hidden" id="id" readonly=true value={{box['request_id']}}>
+            <input name='id' type="hidden" id="id" readonly=true value={{box['request_id']}}>
             <h3>{{ box['item_requested'] }}</h3>
             <p>{{ box['quantity']}}</p>
             <p>{{ box['request_date'] }}</p>
