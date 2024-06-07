@@ -7,24 +7,26 @@
     <title>FMF Login</title>
 </head>
 <body style="background-color: #D7F2F9;">
-    <h1>Login</h1>
-    
-   <form id="loginForm" method="POST">
-       <label for="email">Email:</label>
-       <input type="text" id="email" name="email" required><br>
-       <label for="name">Name:</label>
-       <input type="text" id="name" name="name" required><br>
-       <label for="address">Address:</label>
-       <input type="text" id="address" name="address" required><br>
-       
-       <label for="role">Role:</label>
-       <select id="role" name="role" required>
-           <option value="" disabled selected>Choose a Role</option> 
-           <option value="distributor">Distributor</option>
-           <option value="donator">Donator</option>
-       </select><br>
-       <input type="submit">Login</button>
-   </form>
+    <div class="login">
+        <h1>Login</h1>
+        
+       <form id="loginForm" method="POST">
+           <label for="email">Email:</label>
+           <input type="text" id="email" name="email" required><br>
+           <label for="name">Name:</label>
+           <input type="text" id="name" name="name" required><br>
+           <label for="address">Address:</label>
+           <input type="text" id="address" name="address" required><br>
+           
+           <label for="role">Role:</label>
+           <select id="role" name="role" required>
+               <option value="" disabled selected>Choose a Role</option> 
+               <option value="distributor">Distributor</option>
+               <option value="donator">Donator</option>
+           </select><br>
+           <input type="submit">Login</button>
+       </form>
+    </div>
 </body>
 </html>
    
